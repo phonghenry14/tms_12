@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.0'
+gem 'bootstrap-sass',  '3.2.0.0'
+gem 'bcrypt',     			'3.1.9'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -24,17 +26,23 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+gem 'spring',   '1.1.3'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+group :development, :test do
+  gem 'mysql2',      '0.3.17'
+  gem 'byebug',      '3.4.0'
+  gem 'web-console', '2.0.0.beta3'
+  gem 'spring',      '1.1.3'
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :test do
+  gem 'minitest-reporters', '1.0.5'
+  gem 'mini_backtrace',	    '0.1.3'
+  gem 'guard-minitest',     '2.3.1'
+end
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
+group :production do
+	gem 'mysql2',           '0.3.17'
+	gem 'rails_12factor',   '0.0.2'
+	gem 'unicorn',          '4.8.3'
+end
