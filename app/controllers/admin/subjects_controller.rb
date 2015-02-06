@@ -1,4 +1,6 @@
-class SubjectsController < ApplicationController
+class Admin::SubjectsController < ApplicationController
+  before_action :require_admin
+
   def index
     @subjects = Subject.paginate page: params[:page]
   end
@@ -47,6 +49,12 @@ class SubjectsController < ApplicationController
 
   private
   def subject_params
-    params.require(:subject).permit(:name, :content, tasks_attributes: [:name])
+    params.require(:subject).permit(:name, :content, tasks_attributes: [:name, :id, :_destroy])
+  end
+
+  def require_admin
+    unless current_user.admin?
+      redirect_to root_path
+    end
   end
 end

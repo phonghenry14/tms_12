@@ -25,6 +25,10 @@ module SessionsHelper
     end
   end
 
+  def require_admin?
+    current_user.admin?
+  end
+
   def logged_in?
     !current_user.nil?
   end
