@@ -1,0 +1,18 @@
+<% provide(:title, "Subject") %>
+<p>
+  <strong>Name:</strong>
+  <%= h @subject.name %>
+  <br>
+  <strong>Content:</strong>
+  <%= h @subject.content %>
+</p>
+<ol>
+  <% @subject.tasks.each do |task| %>
+    <li><%= h task.name %></li>
+  <% end %>
+</ol>
+<p>
+  <%= link_to "Edit", edit_subject_path(@subject) %> |
+  <%= link_to "Delete", @subject, method: :delete, data: { confirm: "You sure?" } %> |
+  <%= link_to "View All", subjects_path %>
+</p>

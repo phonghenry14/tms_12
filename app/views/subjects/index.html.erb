@@ -1,0 +1,15 @@
+<% provide(:title, 'Subject') %>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% @subjects.each do |subject| %>
+    <tr>
+      <td><%=h subject.name %>  </td>
+      <td><%= link_to "Show", subject %> |</td>
+      <td><%= link_to "Edit", edit_subject_path(subject) %> |</td>
+      <td><%= link_to "Delete", subject, method: :delete, data: { confirm: "You sure?" }  %></td>
+    </tr>
+  <% end %>
+</table>
+<p><%= link_to "Create New Subjetc", new_subject_path %></p>
