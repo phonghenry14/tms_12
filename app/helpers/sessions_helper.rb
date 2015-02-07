@@ -32,6 +32,10 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
+  
+  def admin_user?
+    current_user.admin?
+  end
 
   def forget user
     user.forget
