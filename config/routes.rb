@@ -6,10 +6,13 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  
   resources :users
   resources :subjects
   resources :tasks
+  
   namespace :admin do
     resources :subjects
+    resources :users
   end
 end
