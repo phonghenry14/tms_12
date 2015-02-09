@@ -1,0 +1,34 @@
+<% provide(:title, 'Edit course') %>
+<h1>Edit course</h1>
+<div class="row">
+  <%= form_for [:admin, @course] do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <aside class="col-md-4">
+    <h3>trainee</h3>
+    <% User.all.each do |user| %>
+      <%= f.fields_for :enrollments, user do |builder| %>
+        <%= user.name %>
+        <%= builder.check_box :_destroy,
+          {checked: @course.users.include?(user)}, false, true %>
+        <%= builder.hidden_field :user_id, value: user.id %>
+        <%= builder.hidden_field :id, value: @course.user_course_id(user) %>
+      <% end %>
+    <% end %>
+    </aside>
+    <aside class= "col-md-8">
+    <h3>Subject</h3>
+    <% Subject.all.each do |subject| %>
+      <%= f.fields_for :course_subjects, subject do |builder| %>
+        <%= subject.name %>
+        <%= builder.check_box :_destroy,
+          {checked: @course.subjects.include?(subject)}, false, true %>
+        <%= builder.hidden_field :subject_id, value: subject.id %>
+        <%= builder.hidden_field :id, value: @course.subject_course_id(subject) %>
+      <% end %>
+    <% end %>
+    <%= f.submit "Save changes", class: "btn btn-primary" %>
+    </aside>
+  <% end %>
+</div>

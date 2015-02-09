@@ -1,0 +1,13 @@
+<% provide(:title, 'Course') %>
+<p>
+  <strong>Name:</strong>
+  <%= h @course.name %>
+  <br>
+  <strong>Content:</strong>
+  <%= @course.content %>
+</p>
+<ol>
+  <% @course.subjects.each do |subject| %>
+    <li><%= link_to subject.name, admin_subject_path(subject) %></li>
+  <% end %>
+</ol>
