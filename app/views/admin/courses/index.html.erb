@@ -1,0 +1,16 @@
+<% provide(:title, 'Courses') %>
+<p><%= link_to "Create New Course", new_admin_course_path, class: "btn" %></p>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% @courses.each do |course| %>
+    <tr>
+      <td><%= link_to course.name, admin_course_path(course) %></td>
+      <td><%= course.content %></td>
+      <td><%= link_to "Edit", edit_admin_course_path(course) %> |</td>
+      <td><%= link_to "Delete", admin_course_path(course), method: :delete,
+       data: {confirm: "You sure?"} %></td>
+    </tr>
+  <% end %>
+</table>
