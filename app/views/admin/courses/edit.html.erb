@@ -1,11 +1,11 @@
 <% provide(:title, 'Edit course') %>
 <h1>Edit course</h1>
-<div class="row">
+<div class="row" >
   <%= form_for [:admin, @course] do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
+    <%= render "shared/error_messages", object: f.object %>
     <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-    <aside class="col-md-4">
+    <%= f.text_field :name, class: "form-control" %>
+    <aside class="col-md-4" >
     <h3>trainee</h3>
     <% User.all.each do |user| %>
       <%= f.fields_for :enrollments, user do |builder| %>
@@ -17,7 +17,7 @@
       <% end %>
     <% end %>
     </aside>
-    <aside class= "col-md-8">
+    <aside class= "col-md-8" >
     <h3>Subject</h3>
     <% Subject.all.each do |subject| %>
       <%= f.fields_for :course_subjects, subject do |builder| %>
