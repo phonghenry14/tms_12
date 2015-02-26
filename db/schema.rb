@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209093456) do
+ActiveRecord::Schema.define(version: 20150213043829) do
 
   create_table "course_subjects", force: :cascade do |t|
     t.integer  "course_id",  limit: 4
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150209093456) do
     t.integer  "course_id",  limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "status",     limit: 4
   end
 
   add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id", using: :btree
@@ -63,7 +64,7 @@ ActiveRecord::Schema.define(version: 20150209093456) do
     t.datetime "updated_at"
     t.string   "password_digest", limit: 255
     t.string   "remember_digest", limit: 255
-    t.boolean  "admin",           limit: 1,   default: false
+    t.boolean  "admin",           limit: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

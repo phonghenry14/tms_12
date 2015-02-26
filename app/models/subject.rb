@@ -8,4 +8,6 @@ class Subject < ActiveRecord::Base
   accepts_nested_attributes_for :tasks, allow_destroy: true
 
   validates :name, presence: true, uniqueness: true
+
+  default_scope ->{order(created_at: :desc)}
 end 

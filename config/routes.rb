@@ -10,10 +10,15 @@ Rails.application.routes.draw do
   resources :users
   resources :subjects
   resources :tasks
+  resources :courses
 
   namespace :admin do
     resources :subjects
     resources :users
     resources :courses
+    resources :courses do 
+      resources :enrollments
+      get 'assign' => 'enrollments#new'
+    end
   end
 end

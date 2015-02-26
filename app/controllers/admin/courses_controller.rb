@@ -1,4 +1,5 @@
 class Admin::CoursesController < ApplicationController
+  before_action :logged_in_user
   before_action :require_admin
 
   def new
@@ -45,8 +46,7 @@ class Admin::CoursesController < ApplicationController
 
   private
   def course_params
-    params.require(:course).permit(:name, :content, 
-      course_subjects_attributes: [:id, :subject_id, :_destroy],
-      enrollments_attributes: [:id, :user_id, :_destroy])
+    params.require(:course).permit(:name, :content, user_ids:[],
+      course_subjects_attributes: [:id, :subject_id, :_destroy])
   end
 end
